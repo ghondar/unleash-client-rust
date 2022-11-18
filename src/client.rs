@@ -724,7 +724,7 @@ where
                     }
                 }
             } else {
-                dbg!(res.err());
+                dbg!(res);
                 warn!("poll: failed to retrieve features");
             }
 
