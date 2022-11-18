@@ -31,6 +31,7 @@ where
         instance_id: String,
         authorization: Option<String>,
     ) -> Result<Self, C::Error> {
+        dbg!("{} {} {} {}", &app_name, &instance_id, &authorization);
         Ok(HTTP {
             client: C::default(),
             app_name,
@@ -45,6 +46,7 @@ where
     /// Perform a GET. Returns errors per HttpClient::get.
     pub fn get(&self, uri: &str) -> C::RequestBuilder {
         let request = self.client.get(uri);
+        dbg!(uri);
         self.attach_headers(request)
     }
 

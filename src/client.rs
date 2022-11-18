@@ -699,6 +699,7 @@ where
         self.polling.store(true, Ordering::Relaxed);
         loop {
             debug!("poll: retrieving features");
+            debug!("endpoint: {}", &endpoint);
             let res = self.http.get_json(&endpoint).await;
             if let Ok(res) = res {
                 let features: Features = res;
