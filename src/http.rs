@@ -72,10 +72,14 @@ where
     }
 
     fn attach_headers(&self, request: C::RequestBuilder) -> C::RequestBuilder {
+        dbg!(self.app_name.as_str());
+        dbg!(self.instance_id.as_str());
         let request = C::header(request, &self.app_name_header, self.app_name.as_str());
         let request = C::header(request, &self.instance_id_header, self.instance_id.as_str());
         if let Some(auth) = &self.authorization {
-            C::header(request, &self.authorization_header.clone(), auth.as_str())
+            dbg!(auth.as_str());
+            let request = C::header(request, &self.authorization_header.clone(), auth.as_str());
+            request
         } else {
             request
         }
